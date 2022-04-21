@@ -41,21 +41,22 @@ def template(request):
         }
     ) 
 def profilehome(request):
+    
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
     query = ("SELECT fullname, branch,rollno, username from tblprofile where fullname is not null" )
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
-    di={}
+    # di={}
     di=my_dictionary()
     my_dictionary.add(di,0,"first")
-    my_dictionary.add(di,'1',"Second") 
-    print(di['1'])
+    my_dictionary.add(di,'sec',"Second") 
+    # print(di['1'])
     idd=[]
     for id in cursor:
         idd.append(id)
-        print(id)
+        # print(id)
     print(idd)
     cursor.close()
     return render(request,'bloghomepage.html', {
@@ -64,6 +65,10 @@ def profilehome(request):
     )
 
 def profileview(request,username):
+    # redirect to user profile view if the request is from owner 
+    if request.user.username== username:
+        return HttpResponseRedirect("/profile/") 
+        
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
     # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
@@ -73,24 +78,56 @@ def profileview(request,username):
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
     idd=[]
+    di=my_dictionary()
+    for id in cursor:
+        my_dictionary.add(di,'profile',id)  
+    query = ('select userid, title ,description,quote,matter ,blogid from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(username)
+    cursor.execute(query)
     for id in cursor:
         idd.append(id)
-        print(idd)
-        print(type(idd))
     print(idd)
+    my_dictionary.add(di,'blogs',idd)
     cursor.close()
     return render(request,'profile.html', {
-        'account': id
+        'account': di
         }
     )
 
-def update_view(request, username):
+def userprofileview(request):
+    
+    cnx = mysql.connector.connect(**config)
+    cursor = cnx.cursor()
+    # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
+
+    query = ("SELECT fullname,branch,batch,rollno,classname,email,username from tblprofile where username={}").format("'"+request.user.username+"'")
+    cursor.execute(query)
+    # results = next(cursor.stored_results()).fetchall()
+    print(cursor)
+    idd=[]
+    di=my_dictionary()
+    for id in cursor:
+        my_dictionary.add(di,'profile',id)  
+    query = ('select userid, title ,description,quote,matter ,blogid from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(request.user.username)
+    cursor.execute(query)
+    for id in cursor:
+        idd.append(id)
+    print(idd)
+    my_dictionary.add(di,'blogs',idd)
+    cursor.close()
+    return render(request,'userprofile.html', {
+        'account': di
+        }
+    )
+
+def update_view(request):
     # dictionary for initial data with
     # field names as keys
-    context ={}
+    context={}
+    
+        
  
     # fetch the object related to passed id
-    obj = get_object_or_404(Tblprofile, username = username)
+    obj = get_object_or_404(Tblprofile, username = request.user.username)
  
     # pass the object as instance in form
     form = ProfileEdit(request.POST or None, instance = obj)
@@ -100,7 +137,7 @@ def update_view(request, username):
     if form.is_valid():
         form.save()
         print("form is valid")
-        return HttpResponseRedirect("/profile/"+username)
+        return HttpResponseRedirect("/profile/"+request.user.username)
  
     # add form dictionary to context
     context["form"] = form

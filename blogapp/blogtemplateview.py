@@ -46,7 +46,7 @@ def blogview(request, username , blogid):
         }
     )
     
-def blogupload(request,username):
+def blogupload(request):
     if request.method == 'GET':
         form  = BlogUpload()
         context = {'form': form}
@@ -58,7 +58,7 @@ def blogupload(request,username):
             description = form.cleaned_data.get('description')
             quote= form.cleaned_data.get('quote')
             matter= form.cleaned_data.get('matter')
-            
+            username= request.user.username
             cnx = mysql.connector.connect(**config)
             cursor = cnx.cursor()
             query=('select id from usermain where username="{}"').format(username)
@@ -67,13 +67,15 @@ def blogupload(request,username):
             for r in cursor:
                 id.append(r)
             userid= id[0][0]
+            
+            
             print(userid)
             query=('INSERT INTO blogmaster (userid, title, description, matter, quote) VALUES ("{}", "{}", "{}", "{}", "{}");').format(userid,title,description,matter,quote)
             cursor.execute(query)
             # form.save()
             cnx.commit()
             
-            return redirect('home')
+            return redirect('profile/'+str(username))
         else:   
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
