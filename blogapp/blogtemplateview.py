@@ -6,7 +6,8 @@ from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
 
-from blogapp.forms import BlogUpload
+from blogapp.forms import   BlogUpload
+from blogapp.models import Blogmaster, Usermain
 config = {
     'user': 'djangouser',
     'password': 'password',
@@ -31,7 +32,7 @@ class my_dictionary(dict):
 def blogview(request, username , blogid):
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
-    query=(' select username,firstname, lastname,userid, title ,description,quote,matter,blogid from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and blogid="{}"').format(username,blogid)
+    query=(' select username,firstname, lastname,userid, title ,description,quote,matter,blogid,timeofupload,photo from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and blogid="{}"').format(username,blogid)
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
@@ -50,15 +51,16 @@ def blogupload(request):
     if request.method == 'GET':
         form  = BlogUpload()
         context = {'form': form}
-        return render(request, 'blogtemplateupdate.html', context)
+        return render(request, 'blogtemplateupload.html', context)
     if request.method == 'POST':
-        form  = BlogUpload(request.POST)
+        form  = BlogUpload(request.POST or None, request.FILES or None)
         if form.is_valid():
             title = form.cleaned_data.get('title')
             description = form.cleaned_data.get('description')
             quote= form.cleaned_data.get('quote')
             matter= form.cleaned_data.get('matter')
             username= request.user.username
+            photo= form.cleaned_data.get('photo')
             cnx = mysql.connector.connect(**config)
             cursor = cnx.cursor()
             query=('select id from usermain where username="{}"').format(username)
@@ -67,17 +69,61 @@ def blogupload(request):
             for r in cursor:
                 id.append(r)
             userid= id[0][0]
-            
-            
             print(userid)
-            query=('INSERT INTO blogmaster (userid, title, description, matter, quote) VALUES ("{}", "{}", "{}", "{}", "{}");').format(userid,title,description,matter,quote)
-            cursor.execute(query)
-            # form.save()
-            cnx.commit()
             
+            userid= Usermain.objects.get(pk=userid)
+            obj = Blogmaster(title = title,  
+                description = description,
+                quote = quote,
+                matter= matter,
+                photo= photo,
+                userid =userid  )
+            obj.save()
+
             return redirect('profile/'+str(username))
         else:   
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {'form': form}
-            return render(request, 'blogtemplateupdate.html', context)
+            return render(request, 'blogtemplateupload.html', context)
+
+def blog_update(request,username,blogid):
+    if request.user.username == username:
+        # dictionary for initial data with
+        # field names as keys
+        context={}
+        
+            
+    
+        # fetch the object related to passed id
+        obj = get_object_or_404(Blogmaster, blogid=blogid)
+        # pass the object as instance in form
+        form = BlogUpload(request.POST or None,request.FILES or None, instance = obj)
+    
+        # save the data from the form and
+        # redirect to detail_view
+        if form.is_valid():
+            form.save()
+            print("form is valid")
+            return HttpResponseRedirect("/"+request.user.username+"/"+str(blogid))
+    
+        # add form dictionary to context
+        context["form"] = form
+        context["obj"]=obj
+    
+        return render(request, "blogtemplateupdate.html", context) 
+    else:
+        return HttpResponseRedirect("/"+request.user.username+"/"+str(blogid)) 
+    
+def blog_delete(request,username,blogid):
+
+    if request.user.username==username:
+
+        
+        cnx = mysql.connector.connect(**config)
+        cursor = cnx.cursor()
+        query=('delete from blogmaster where blogid="{}"').format(blogid)
+        cursor.execute(query)
+        cnx.commit()
+
+        return redirect('/profile')

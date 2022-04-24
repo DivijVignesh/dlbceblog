@@ -60,8 +60,8 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/640px-Crab_Nebula.jpg"
-                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+              <img src="/media/{{ account.profile.7 }}"
+                alt="avatar" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
     
               <h5 class="my-3">{{ account.0}}</h5>
               <p class="text-muted mb-1">{{ account.profile.3 }}</p>
@@ -152,7 +152,7 @@
               </div>
             </div>
           </div>
-
+          <a href="/add" class="btn btn-primary">Add a blog</a>
           {% for i in account.blogs %}
 
           <a href="/{{user.username}}/{{i.5}}" style="text-decoration: none; ">

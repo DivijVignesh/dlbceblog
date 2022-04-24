@@ -11,6 +11,7 @@ from blogapp.models import Blogmaster, Tblprofile
 # Create your forms here.
 
 
+
 class ProfileEdit(forms.ModelForm):
     # username = forms.CharField(required=True,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Username','id':'username' }),)
 
@@ -22,17 +23,28 @@ class ProfileEdit(forms.ModelForm):
     rollno= forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Roll number'}),)
     classname = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'classname'}),)
     # password2 = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'type':'password','placeholder': 'Password again'}),)
-    
+    image = forms.ImageField()
     class Meta:
         model= Tblprofile
-        fields=["email","batch","fullname","branch","rollno","classname"]
+        fields=["email","batch","fullname","branch","rollno","classname","image"]
 
 class BlogUpload(forms.ModelForm):
     title = forms.CharField(required=True,max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Title', }),)
     quote= forms.CharField(required=True,max_length=10000,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Quote'}),)
     matter= forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Matter'}),)
     description= forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Description'}),)
-    
+    photo= forms.ImageField()
     class Meta:
         model= Blogmaster
-        fields=["title","quote","matter","description"]        
+        fields=["title","quote","matter","description", "photo"]       
+    
+class BlogUpdate(forms.ModelForm):
+    title = forms.CharField(required=True,max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Title', }),)
+    quote= forms.CharField(required=True,max_length=10000,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Quote'}),)
+    matter= forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Matter'}),)
+    description= forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control  form-control-lg', 'placeholder': 'Description'}),)
+    photo= forms.ImageField()
+    class Meta:
+        model= Blogmaster
+        fields=["title","quote","matter","description", "photo"]   
+

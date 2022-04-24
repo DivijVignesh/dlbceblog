@@ -54,6 +54,9 @@
                       <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
                   </li>
               </ul>
+              {% if user.username == blog.0.0%}
+              <a href="/{{blog.0.0}}/{{blog.0.8}}/edit" class="btn btn-primary">Edit</a>
+              {% endif %}
               {% if user.is_authenticated %}
                 <!-- <button id="sign_in " class="btn btn-outline-primary"  
                     onclick="window.location.href = '/auth/logout';">Logout</button> -->
@@ -94,6 +97,13 @@
         
       </div>
     </div>
+    <script>
+      timeofupload()
+      function timeofupload(){
+        var date="{{blog.0.9}}"
+        console.log(date)
+      }
+    </script>
     <div class="container">
       <div class="col "></div>
 
@@ -105,7 +115,7 @@
           </a>
           <h3 class="mb-3">{{ blog.0.1}} {{ blog.0.2 }}</h2>
           <figcaption class="blockquote-footer">
-          <cite title="Source Title">posted on 17 feb,2022</cite>
+          <cite title="Source Title">posted on {{blog.0.9}}</cite>
           </figcaption>
         </div></div>
         <div class="col-8 ">
@@ -129,7 +139,7 @@
             
           </blockquote>
      <div class="img py-3">
-          <img src="https://live.staticflickr.com/819/27647866068_8dd0c6fe74_b.jpg" class="img-fluid" width="90%" alt="">
+          <img src="/media/{{ blog.0.10}}" class="img-fluid" width="90%" alt="">
         </div>
      
       <div class="col-12 py-2 ">
@@ -155,12 +165,12 @@
           <div class="card-body p-4">
             
             <h3 class="mb-3">Writer</h3>
-            <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Created by <strong>________</strong> on 16 Feb , 2022</p>
+            <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Created by <strong>{{blog.0.1}} {{blog.0.2}}</strong> on {{blog.0.9}}</p>
             
             <div class="d-flex justify-content-start align-items-center">
               <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span class="text-muted small">Likes</span></p>
               <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span class="text-muted small">Visit my other blogs</span></p>
-              <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span class="text-muted small"><a href="/profile/msindhu">My Profile</a></span>
+              <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span class="text-muted small"><a href="/profile/{{blog.0.0}}">My Profile</a></span>
                 <span class="ms-3 me-4">|</span></p>
               <a href="#!">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/640px-Crab_Nebula.jpg" alt="avatar" class="img-fluid rounded-circle me-3" width="35">

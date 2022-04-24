@@ -73,7 +73,7 @@ def profileview(request,username):
     cursor = cnx.cursor()
     # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
 
-    query = ("SELECT fullname,branch,batch,rollno,classname,email,username from tblprofile where username='"+username+"'")
+    query = ("SELECT fullname,branch,batch,rollno,classname,email,username,image from tblprofile where username='"+username+"'")
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
@@ -99,7 +99,7 @@ def userprofileview(request):
     cursor = cnx.cursor()
     # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
 
-    query = ("SELECT fullname,branch,batch,rollno,classname,email,username from tblprofile where username={}").format("'"+request.user.username+"'")
+    query = ("SELECT fullname,branch,batch,rollno,classname,email,username,image from tblprofile where username={}").format("'"+request.user.username+"'")
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
@@ -107,7 +107,7 @@ def userprofileview(request):
     di=my_dictionary()
     for id in cursor:
         my_dictionary.add(di,'profile',id)  
-    query = ('select userid, title ,description,quote,matter ,blogid from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(request.user.username)
+    query = ('select userid, title ,description,quote,matter ,blogid, photo from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(request.user.username)
     cursor.execute(query)
     for id in cursor:
         idd.append(id)
@@ -128,9 +128,8 @@ def update_view(request):
  
     # fetch the object related to passed id
     obj = get_object_or_404(Tblprofile, username = request.user.username)
- 
     # pass the object as instance in form
-    form = ProfileEdit(request.POST or None, instance = obj)
+    form = ProfileEdit(request.POST or None,request.FILES or None, instance = obj)
  
     # save the data from the form and
     # redirect to detail_view
@@ -141,6 +140,7 @@ def update_view(request):
  
     # add form dictionary to context
     context["form"] = form
+    context["obj"]=obj
  
     return render(request, "profileedit.html", context) 
 def profileedit(request):

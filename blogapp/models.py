@@ -14,8 +14,8 @@ class Tblprofile(models.Model):
     classname = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
     username = models.CharField(max_length=20)
-    userid = models.IntegerField(blank=True, null=True)
-
+    userid = models.IntegerField()
+    image = models.ImageField(upload_to='users/profile')
     class Meta:
         managed = False
         db_table = 'tblprofile'
@@ -27,7 +27,7 @@ class Blogmaster(models.Model):
     description = models.CharField(max_length=1000, blank=True, null=True)
     matter = models.CharField(max_length=10000)
     quote = models.CharField(max_length=100, blank=True, null=True)
-
+    photo = models.ImageField(upload_to='users/')
     class Meta:
         managed = False
         db_table = 'blogmaster' 

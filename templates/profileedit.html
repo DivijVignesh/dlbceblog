@@ -57,16 +57,16 @@
 
   <section style="background-color: #eee;">
     <div class="container py-5">
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.errors}}
       <div class="row">
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/640px-Crab_Nebula.jpg"
-                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-    
+              <img src="/media/{{obj.image}}"
+                alt="avatar" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+                {{ form.image }}
               <h5 class="my-3"></h5>
               <p class="text-muted mb-1">Classname:</p>
               <p class="text-muted mb-4">{{ form.classname}}</p>

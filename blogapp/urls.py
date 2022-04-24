@@ -18,5 +18,7 @@ urlpatterns = [
     path('profile/',profileview.userprofileview,name='profile'),
     path('msindhu/template', profileview.template, name="blogtemplate"),
     path('<str:username>/<int:blogid>', blogtemplateview.blogview , name="blogview"),
-    path('add', blogtemplateview.blogupload , name="blogadd")
+    path('add', blogtemplateview.blogupload , name="blogadd"),
+    path('<str:username>/<int:blogid>/edit', blogtemplateview.blog_update , name="blogedit"),
+    path('<str:username>/<int:blogid>/delete', blogtemplateview.blog_delete , name="blogedit"),
 ]
