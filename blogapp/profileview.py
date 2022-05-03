@@ -81,7 +81,7 @@ def profileview(request,username):
     di=my_dictionary()
     for id in cursor:
         my_dictionary.add(di,'profile',id)  
-    query = ('select userid, title ,description,quote,matter ,blogid from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(username)
+    query = ('select userid, title ,description,quote,matter ,blogid,photo,TIMESTAMPDIFF(MINUTE, timeofupload,NOW()),views, username from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(username)
     cursor.execute(query)
     for id in cursor:
         idd.append(id)
@@ -107,7 +107,7 @@ def userprofileview(request):
     di=my_dictionary()
     for id in cursor:
         my_dictionary.add(di,'profile',id)  
-    query = ('select userid, title ,description,quote,matter ,blogid, photo from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(request.user.username)
+    query = ('select userid, title ,description,quote,matter ,blogid, photo,TIMESTAMPDIFF(MINUTE, timeofupload,NOW()),views from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(request.user.username)
     cursor.execute(query)
     for id in cursor:
         idd.append(id)

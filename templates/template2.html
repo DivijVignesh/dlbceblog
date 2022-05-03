@@ -1,4 +1,4 @@
-{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>Blog</title>
+  <title>Blogger main page</title>
 </head>
 
 <body >
@@ -42,120 +42,147 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <a class="navbar-brand" href="">DLBCE</a>
+              <a class="navbar-brand" href="#">DLBCE</a>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item ">
-                      <a class="nav-link active " aria-current="page" href="/">Home</a>
+                      <a class="nav-link active " aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link active" href="#">Student Blogs</a>
+                      <a class="nav-link active" href="#">Our Blogs</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
                   </li>
               </ul>
-              {% if user.username == blog.0.0%}
-              <a href="/{{blog.0.0}}/{{blog.0.8}}/edit" class="btn btn-primary">Edit</a>
-              {% endif %}
-              {% if user.is_authenticated %}
-                <!-- <button id="sign_in " class="btn btn-outline-primary"  
-                    onclick="window.location.href = '/auth/logout';">Logout</button> -->
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">{{ user.username }}
-                        <i class="bi bi-person"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="/profile/{{ user.username }}">Profile</a></li>
-                        <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
-
-                    </ul>
-                </div>
-                {% else %}
-
-                <button class="btn btn-outline-primary" onclick="window.location.href = '/auth';">Log In</button>
-
-
-                {% endif %}
+              <button class="btn btn-outline-primary" type="submit">Log In</button>
 
           </div>
       </div>
   </nav>
+  <!-- heading starts  -->
   <div class="container " >
     <div class="row py-2">
-   
-      <div class="col-12 py-5 ">
+   <div class="col-4"></div>
+      <div class="col-4 py-5 ">
         <figure class="text-center">
           <blockquote class="blockquote" style="font-family:  Roboto;">
-            <h1>{{ blog.0.4}}</h1>
+            <div class="form-outline mb-4">
+              <input type="password" id="form2Example2" class="form-control" placeholder="hello"/>
+              <label class="form-label" for="form2Example2"></label>
+            </div>
             
           </blockquote>
           <figcaption class="blockquote-footer ">
-            <cite title="Source Title">{{ blog.0.6}}</cite>
+            <cite title="Source Title"><div class="form-outline mb-4">
+              <input type="email" id="loginName" class="form-control" placeholder="thinnava ra"/>
+              <label class="form-label" for="loginName"></label>
+            </div></cite>
           </figcaption>
         </figure>
         
       </div>
+      <div class="col-4"></div>
     </div>
-    <script>
-      timeofupload()
-      function timeofupload(){
-        var date="{{blog.0.9}}"
-        console.log(date)
-      }
-    </script>
+    <!-- heading ends  -->
     <div class="container">
       <div class="col "></div>
-
+ 
     <div class="container ">
       <div class="row">
-        <div class="col "><div class="card-body  ">
+        <div class="col-4 ">
+          <div class="card-body  ">
           <a href="#!">
-            <a href="/profile/msindhu"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/640px-Crab_Nebula.jpg" alt="avatar" class="img-fluid rounded-circle me-3" width="35"></a>
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar" class="img-fluid rounded-circle me-3" width="35">
           </a>
-          <h3 class="mb-3">{{ blog.0.1}} {{ blog.0.2 }}</h2>
+          <h3 class="mb-3">Sindhu Moulika</h2>
           <figcaption class="blockquote-footer">
-          <cite title="Source Title">posted on {{blog.0.9}} Views: {{blog.0.11}}</cite>
+          <cite title="Source Title">posted on 17 feb,2022</cite>
           </figcaption>
-        </div></div>
-        <div class="col-8 ">
-
-          <p class="lead">
-            {{ blog.0.5}}
-          </p>
-          
         </div>
-        <div class="col">
-          
-         </div>
-
       </div>
+
+       
+        <!-- description starts  -->
+      <div class="col-4">
+        <blockquote class="blockquote" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+          <div class="form-outline">
+            <textarea class="form-control" id="textAreaExample" rows="5" placeholder="what is ur idea ?" style="border-style: dotted;"></textarea>
+            <label class="form-label" for="textAreaExample"></label
+            >
+          </div>
+            
+        </blockquote>
+          </div>
+          <div class="col-4"></div>
+      </div>
+      
+    </div>
     </div>
   </div>
+   <!-- discription ends  -->
+  <!-- second heading starts  -->
   <div class="container  col-8">
     <div class="row py-2 ">
         <blockquote class="blockquote" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
-            <h2> {{blog.0.4}}</h2>
+          <div class="form-outline mb-4" >
+            <input type="email" id="loginName" class="form-control" placeholder="thagudhama ra" style="height: 20%;"/>
+            <label class="form-label" for="loginName"></label>
+          </div>
             
           </blockquote>
+          <!-- second headding ends  -->
      <div class="img py-3">
-          <img src="/media/{{ blog.0.10}}" class="img-fluid" width="90%" alt="">
+          <img src="https://live.staticflickr.com/819/27647866068_8dd0c6fe74_b.jpg" class="img-fluid" width="90%" alt="">
         </div>
-     
+     <!-- main para starts  -->
       <div class="col-12 py-2 ">
 
         <p class="lead">
-            {{ blog.0.7}}
+          <div class="form-outline">
+            <textarea class="form-control" id="textAreaExample" rows="4" placeholder="para 1" style="border-style: dashed;background-color: rgb(233, 239, 245);border-color: #0082ca;"></textarea>
+            <label class="form-label" for="textAreaExample"></label
+            >
+          </div><br>
+            
+            <h4> <div class="form-outline " >
+              <input type="email" id="loginName" class="form-control" placeholder="sub heading 1 if needed"/>
+              <label class="form-label" for="loginName"></label>
+            </div></h4>
+            <p class="lead">
+              <div class="form-outline">
+                <textarea class="form-control" id="textAreaExample" rows="4" placeholder="what is ur idea ?"></textarea>
+                <label class="form-label" for="textAreaExample"></label
+                >
+              </div><br> </p>
+            <h5><div class="form-outline " >
+              <input type="email" id="loginName" class="form-control" placeholder="sub heading 2 if needed"/>
+              <label class="form-label" for="loginName"></label>
+            </div></h5>
+            <p class="lead">
+              <div class="form-outline">
+                <textarea class="form-control" id="textAreaExample" rows="4" placeholder="what is your idea ?"></textarea>
+                <label class="form-label" for="textAreaExample"></label
+                >
+              </div>
+            </p>
+            <p class="lead">
+              <div class="form-outline">
+                <textarea class="form-control" id="textAreaExample" rows="3" placeholder="conclusion"></textarea>
+                <label class="form-label" for="textAreaExample"></label
+                >
+              </div>
+            </p>
         </p>
       </div>
 
-      
+     
       <div class="col "></div>
     </div>
     </div>
   </div>
 </div>
-  
+  <!-- main para ends  -->
+   <!-- comments start  -->
 <div class="col"></div>
 <section class="vh-50"  style="background-color: #333333;">
   <div class="container py-5 h-50">
@@ -165,15 +192,15 @@
           <div class="card-body p-4">
             
             <h3 class="mb-3">Writer</h3>
-            <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Created by <strong>{{blog.0.1}} {{blog.0.2}}</strong> on {{blog.0.9}}</p>
+            <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Created by <strong>________</strong> on 11 April , 2021</p>
             
             <div class="d-flex justify-content-start align-items-center">
               <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span class="text-muted small">Likes</span></p>
               <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span class="text-muted small">Visit my other blogs</span></p>
-              <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span class="text-muted small"><a href="/profile/{{blog.0.0}}">My Profile</a></span>
+              <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span class="text-muted small">My Profile</span>
                 <span class="ms-3 me-4">|</span></p>
               <a href="#!">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/640px-Crab_Nebula.jpg" alt="avatar" class="img-fluid rounded-circle me-3" width="35">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar" class="img-fluid rounded-circle me-3" width="35">
               </a>
               <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M4.75 2.5a.25.25 0 00-.25.25v9.91l3.023-2.489a.75.75 0 01.954 0l3.023 2.49V2.75a.25.25 0 00-.25-.25h-6.5zM3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 01-1.227.579L8 11.722l-3.773 3.107A.75.75 0 013 14.25V2.75z"></path></svg>
@@ -183,16 +210,16 @@
           </div>
         </div>
         <div class="w-100 text-white">
-          <h5>Add a Query</h5>
+          <h5>Add a comment</h5>
           
           <div class="form-outline">
-            <textarea class="form-control" id="textAreaExample" rows="1" placeholder="what is your query ?"></textarea>
+            <textarea class="form-control" id="textAreaExample" rows="1" placeholder="what is ur idea ?"></textarea>
             <label class="form-label" for="textAreaExample"></label
             >
           </div>
           
             <div class="float-end mt-2 pt-1">
-                <button type="button" class="btn btn-primary btn-sm">Post Query</button>
+                <button type="button" class="btn btn-primary btn-sm">Post comment</button>
                 <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
               </div>
           
@@ -204,10 +231,10 @@
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h4 class="text-dark mb-0">Unread comments (0)</h4>
+          <h4 class="text-dark mb-0">Unread comments (4)</h4>
           <div class="card">
             <div class="card-body p-2 d-flex align-items-center">
-              <h6 class="text-primary fw-bold small mb-0 me-1">Query "ON"</h6>
+              <h6 class="text-primary fw-bold small mb-0 me-1">Comments "ON"</h6>
               <div class="form-check form-switch">
                 <input
                   class="form-check-input"
@@ -226,7 +253,7 @@
             <div class="d-flex flex-start">
               <img
                 class="rounded-circle shadow-1-strong me-3"
-                src="{% static '/assets/img/blank-profile-picture-973460_640.png'%}"
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).webp"
                 alt="avatar"
                 width="40"
                 height="40"
@@ -235,7 +262,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h6 class="text-primary fw-bold mb-0">
                     user_1
-                    <span class="text-dark ms-2"> Queries here</span>
+                    <span class="text-dark ms-2">Thinnava ra ?</span>
                   </h6>
                   <p class="mb-0">2 days ago</p>
                 </div>
@@ -253,7 +280,64 @@
             </div>
           </div>
         </div>
-
+<!-- comment2  -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex flex-start">
+              <img
+                class="rounded-circle shadow-1-strong me-3"
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
+                alt="avatar"
+                width="40"
+                height="40"
+              />
+              <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="text-primary fw-bold mb-0">
+                    user_2
+                    <span class="text-dark ms-2">WTF!!! </span>
+                  </h6>
+                  <p class="mb-0">3 days ago</p>
+                </div>
+        <!-- nested comments  -->
+                <div class="d-flex flex-start">
+                  <img
+                    class="rounded-circle shadow-1-strong me-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
+                    alt="avatar"
+                    width="40"
+                    height="40"
+                  />
+                  </a>
+                  <div class="flex-grow-1 flex-shrink-1">
+                    <div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-1">
+                          Simona Disa <span class="small">- 3 hours ago</span>
+                        </p>
+                      </div>
+                      <p class="small mb-0">
+                        letters, as opposed to using 'Content here, content here',
+                        making it look like readable English.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="small mb-0" style="color: #aaa;">
+                    <a href="#!" class="link-grey">Remove</a> •
+                    <a href="#!" class="link-grey">Reply</a> 
+                  </p>
+                  
+                  <div class="d-flex flex-row">
+                    <i class="far fa-check-circle text-primary"></i>
+                  </div>
+                  
+                </div>
+               
+              </div>
+            </div>
+          </div>
 
         
         
@@ -262,6 +346,7 @@
   </div>
 </section>
 <section class="">
+  <!-- comments ends  -->
   <!-- Footer -->
   <footer class="text-center text-white" style="background-color: #0a4275;">
       <!-- Grid container -->
@@ -297,21 +382,10 @@
           <!-- Section: CTA -->
           <section class="">
               <p class="d-flex justify-content-center align-items-center">
-                  {% if user.is_authenticated %}
-
-                        <span class="me-3">Visit Our College website</span>
-                        <button type="button" onclick="window.location.href = 'https:www.bullayyacollege.org/'" class="btn btn-outline-light btn-rounded" >
-                            Click Here
-                        </button>
-                    {% else %}
-
-                    <span class="me-3">Register for free</span>
-                        <button type="button" onclick="window.location.href='/auth/signup/'" class="btn btn-outline-light btn-rounded">
-                            Signup
-                        </button>
-
-
-                    {% endif %}
+                  <span class="me-3">Register for free</span>
+                  <button type="button" class="btn btn-outline-light btn-rounded">
+                      Sign up!
+                  </button>
               </p>
           </section>
           <!-- Section: CTA -->

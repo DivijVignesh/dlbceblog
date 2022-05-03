@@ -1,4 +1,4 @@
-{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -36,18 +36,15 @@
             <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
           </li>
         </ul>
-        {% if user.is_authenticated %}
         <button id="sign_in " class="btn btn-outline-primary"
           onclick="window.location.href = '/auth/logout';">Logout</button>
-          
-      <button id="sign_in " class="btn btn-outline-primary"
-          onclick="window.location.href = '/profile/edit/';">Update Profile</button>
-        {% else %}
+          <!-- <a href="#" class="btn btn-primary">Share Profile</a> -->
+      <!-- <button id="sign_in " class="btn btn-outline-primary"
+          type="submit" name="submit">Update</button> -->
 
         <button class="btn btn-outline-primary" onclick="window.location.href = '/auth';">Log In</button>
 
 
-        {% endif %}
 
 
       </div>
@@ -57,24 +54,23 @@
 
   <section style="background-color: #eee;">
     <div class="container py-5">
-
+      <form method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-lg-4">
-          <div class="card mb-4">
+          <div class="card mb-4 ">
             <div class="card-body text-center">
-              <img src="/media/{{ account.profile.7 }}"
-                alt="avatar" class="rounded-circle img-fluid" style="width: 130px; height: 130px;">
-                
-              <h5 class="my-3">{{ account.0}}</h5>
-              <p class="text-muted mb-1">{{ account.profile.3 }}</p>
-              <p class="text-muted mb-4">{{ account.profile.4 }}</p>
+              <a href="#!">
+                <img src="./27d7b8cf2b1d6b9d12270cb51684a1fd.jpg" class="rounded-circle img-fluid " style="width: 130px; height: 130px;  "
+                alt="Avatar" />
+              </a>
+               
+              <h5 class="my-3"></h5>
+              <p class="text-muted mb-1">Classname:</p>
+              <p class="text-muted mb-4"></p>
 
               <div class="d-flex justify-content-center mb-2 ">
-                <!-- <button type="button" class="btn btn-primary">Share Profile</button> -->
-                <a href="#" class="btn btn-primary">Share Profile</a>
-
-                <a href="" class="btn btn-outline-danger btn-sm justify-content-center"><i class="bi bi-heart"></i>
-                  Like</a>
+                  <button id="sign_in " class="btn btn-outline-primary"
+                type="submit" name="submit">Update</button>
               </div>
             </div>
           </div>
@@ -113,7 +109,7 @@
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ account.profile.0 }}</p>
+                  <p class="text-muted mb-0"></p>
                 </div>
               </div>
               <hr>
@@ -122,7 +118,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ account.profile.5 }}</p>
+                  <p class="text-muted mb-0"></p>
                 </div>
               </div>
               <hr>
@@ -131,7 +127,7 @@
                   <p class="mb-0">Regd. No</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ account.profile.3 }}</p>
+                  <p class="text-muted mb-0"></p>
                 </div>
               </div>
               <hr>
@@ -140,7 +136,7 @@
                   <p class="mb-0">Branch</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ account.profile.1 }}</p>
+                  <p class="text-muted mb-0"></p>
                 </div>
               </div>
               <hr>
@@ -149,52 +145,69 @@
                   <p class="mb-0">Batch</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ account.profile.2 }}</p>
+                  <p class="text-muted mb-0"></p>
                 </div>
               </div>
             </div>
           </div>
-          <a href="/add" class="btn btn-primary p-1">Add a blog</a>
-          <script>
-                function uploadDate(date){
-                    if(date<60)
-                     document.write(Math.round(date) +" min ago");
-                    else if(date>=60 && date<1440)
-                     document.write(Math.round(date/60)+" hours ago")
-                     else if(date>=1440 && date<43800)
-                     document.write(Math.round(date/1440)+" days ago")
-                     else if(date>=43800 && date<525601)
-                     document.write(Math.round(date/43800)+" months ago")
-                     else if(date>=525601)
-                     document.write(Math.round(date/525601)+" years ago")
-
-                }
-          </script>
-          {% for i in account.blogs %}
-
-          <a href="/{{user.username}}/{{i.5}}" style="text-decoration: none; ">
+          
+      </form>
+          
           <div class="card mb-4">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="/media/{{i.6}}" class="img-fluid rounded-start" alt="..." style="width: 230px; height: 230px;">
+                <img src="{% static 'assets/img/blogdisplay.png' %}" class="img-fluid rounded-start" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">{{ i.1}}</h5>
-                  <p class="card-text">{{ i.2 }}</p>
-                  <script>
-                    document.getElementById("{{i.1}}").innerHTML = window.uploadDate("{{i.7}}");
-                  </script>
-                  <p class="card-text"><small class="text-muted" id={{i.1}} ><i class="bi bi-person"></i> {{i.8}}  
-                   </small></p>
+                  <h5 class="card-title">Blog 1</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural
+                    lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted"><i class="bi bi-person"></i>123 . 10 mins
+                      ago</small></p>
                 </div>
               </div>
             </div>
           </div>
-          </a>
-          {% endfor %}
+
+          <div class="card mb-4">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{% static 'assets/img/blogdisplay.png' %}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Blog 2</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural
+                    lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted"><i class="bi bi-person"></i>123 . 10 mins
+                      ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{% static 'assets/img/blogdisplay.png' %}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Blog 3</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural
+                    lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted"><i class="bi bi-person"></i>123 . 10 mins
+                      ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      
   </section>
 
 
@@ -236,21 +249,10 @@
         <!-- Section: CTA -->
         <section class="">
           <p class="d-flex justify-content-center align-items-center">
-            {% if user.is_authenticated %}
-
-                        <span class="me-3">Visit Our College website</span>
-                        <button type="button" onclick="window.location.href = 'https:www.bullayyacollege.org/'" class="btn btn-outline-light btn-rounded" >
-                            Click Here
-                        </button>
-                    {% else %}
-
-                    <span class="me-3">Register for free</span>
-                        <button type="button" onclick="window.location.href='/auth/signup/'" class="btn btn-outline-light btn-rounded">
-                            Signup
-                        </button>
-
-
-                    {% endif %}
+            <span class="me-3">Register for free</span>
+            <a type="button" href="{% url 'signup'%}" class="btn btn-outline-light btn-rounded">
+              Sign up!
+            </a>
           </p>
         </section>
         <!-- Section: CTA -->

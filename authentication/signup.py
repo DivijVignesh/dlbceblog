@@ -53,7 +53,7 @@ def signup_request(request):
             
             cnx.commit()
             
-            return redirect('login')
+            return render(request, 'login.html', context={}) 
         else:   
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')

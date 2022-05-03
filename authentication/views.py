@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import NewUserForm, UserLoginForm, SignupForm
 from django.contrib.auth import login, authenticate ,logout
 from django.contrib import messages
+from django.template import RequestContext
 
 from .models import account
 # Create your views here.
@@ -67,7 +68,7 @@ def login_request(request):
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
 				print(f"You are now logged in as {username}.")
-				return redirect("home")
+				return render(request=request, template_name="bloghomepage.html", context={})
 			else:
 				messages.error(request,"Invalid username or password.")
 				print('invalid username or password')

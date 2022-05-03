@@ -32,8 +32,9 @@ class my_dictionary(dict):
 def blogview(request, username , blogid):
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
-    query=(' select username,firstname, lastname,userid, title ,description,quote,matter,blogid,timeofupload,photo from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and blogid="{}"').format(username,blogid)
+    query=(' select username,firstname, lastname,userid, title ,description,quote,matter,blogid,timeofupload,photo, views from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and blogid="{}"').format(username,blogid)
     cursor.execute(query)
+    
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
     idd=[]
@@ -41,7 +42,10 @@ def blogview(request, username , blogid):
         idd.append(id)
         # print(id)
     print(idd)
+    query=(' UPDATE blogmaster set views= views+1 where blogid={}').format(blogid)
+    cursor.execute(query)
     cursor.close()
+    cnx.commit()
     return render(request,'blogtemplate.html', {
         'blog': idd
         }
@@ -125,5 +129,4 @@ def blog_delete(request,username,blogid):
         query=('delete from blogmaster where blogid="{}"').format(blogid)
         cursor.execute(query)
         cnx.commit()
-
         return redirect('/profile')

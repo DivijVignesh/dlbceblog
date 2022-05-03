@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6$rrwh*rhz4-5bd@4w1_)v^=mzkg305)@r1(f#+ap0tzhaqwi$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =True 
 
-ALLOWED_HOSTS = ['loud-rat-76.loca.lt', '127.0.0.1']
+ALLOWED_HOSTS = ['e7ca-49-204-227-83.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -43,10 +43,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

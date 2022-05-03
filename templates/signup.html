@@ -96,9 +96,10 @@
               <div class=" pb-2 pb-md-0 mb-md-5 text-black">
                 <h3 class="mb-5 text-uppercase">Sign Up</h3>
                 <form method="post">
+                  {% csrf_token %}
                   <div class="row">
 
-                    {% csrf_token %}
+                    
                       
                     {{form.errors}}
                     <div class="col-md-6 mb-4">
