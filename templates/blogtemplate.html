@@ -55,7 +55,8 @@
                   </li>
               </ul>
               {% if user.username == blog.0.0%}
-              <a href="/{{blog.0.0}}/{{blog.0.8}}/edit" class="btn btn-primary">Edit</a>
+              <a href="/{{blog.0.0}}/{{blog.0.8}}/edit" class="btn btn-primary " style="">Edit</a>
+              <span style="color: #f7f6f6;">|</span>
               {% endif %}
               {% if user.is_authenticated %}
                 <!-- <button id="sign_in " class="btn btn-outline-primary"  
@@ -111,7 +112,7 @@
       <div class="row">
         <div class="col "><div class="card-body  ">
           <a href="#!">
-            <a href="/profile/msindhu"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/640px-Crab_Nebula.jpg" alt="avatar" class="img-fluid rounded-circle me-3" width="35"></a>
+            <a href="/profile/{{blog.0.0}}"><img src="/media/{{blog.0.10}}" alt="avatar" class="img-fluid rounded-circle me-3" width="35"></a>
           </a>
           <h3 class="mb-3">{{ blog.0.1}} {{ blog.0.2 }}</h2>
           <figcaption class="blockquote-footer">
@@ -184,19 +185,21 @@
         </div>
         <div class="w-100 text-white">
           <h5>Add a Query</h5>
-          
+          <form method="post"> 
+           {% csrf_token %}
           <div class="form-outline">
-            <textarea class="form-control" id="textAreaExample" rows="1" placeholder="what is your query ?"></textarea>
+            <!-- <textarea class="form-control" id="textAreaExample" rows="1" placeholder="what is your query ?"></textarea> -->
+            {{ form.comment }}
             <label class="form-label" for="textAreaExample"></label
             >
           </div>
-          
+         
             <div class="float-end mt-2 pt-1">
-                <button type="button" class="btn btn-primary btn-sm">Post Query</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-sm">Post Query</button>
                 <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
               </div>
           
-          
+          </form>
         </div>
 </section>
 <section style="background-color: #f7f6f6;">
@@ -204,7 +207,7 @@
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h4 class="text-dark mb-0">Unread comments (0)</h4>
+          <h4 class="text-dark mb-0">Queries</h4>
           <div class="card">
             <div class="card-body p-2 d-flex align-items-center">
               <h6 class="text-primary fw-bold small mb-0 me-1">Query "ON"</h6>
@@ -221,12 +224,30 @@
           </div>
         </div>
 <!-- comment 1  -->
+<script>
+                function uploadDate(date){
+                    if(date<60){
+                     document.write(Math.round(date) +" min ago");
+                     return (Math.round(date) +" min ago");
+                    } 
+                    else if(date>=60 && date<1440)
+                      return (Math.round(date/60)+" hours ago")
+                     else if(date>=1440 && date<43800)
+                     return (Math.round(date/1440)+" days ago")
+                     else if(date>=43800 && date<525601)
+                     return (Math.round(date/43800)+" months ago")
+                     else if(date>=525601)
+                     return (Math.round(date/525601)+" years ago")
+
+                }
+          </script>
+        {% for i in comment %}
         <div class="card mb-3">
           <div class="card-body">
             <div class="d-flex flex-start">
               <img
                 class="rounded-circle shadow-1-strong me-3"
-                src="{% static '/assets/img/blank-profile-picture-973460_640.png'%}"
+                src="/media/{{i.4}}"
                 alt="avatar"
                 width="40"
                 height="40"
@@ -234,10 +255,15 @@
               <div class="w-100">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h6 class="text-primary fw-bold mb-0">
-                    user_1
-                    <span class="text-dark ms-2"> Queries here</span>
+                    {{ i.5 }}
+                    <span class="text-dark ms-2">{{ i.3}}</span>
                   </h6>
-                  <p class="mb-0">2 days ago</p>
+                  
+
+                  <p class="mb-0" id={{ i.1 }}><script>
+                    
+                    document.getElementById("{{i.1}}").innerHTML = window.uploadDate("{{i.0}}");
+                  </script></p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <p class="small mb-0" style="color: #aaa;">
@@ -253,7 +279,7 @@
             </div>
           </div>
         </div>
-
+        {% endfor %}
 
         
         

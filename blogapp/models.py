@@ -44,3 +44,13 @@ class Usermain(models.Model):
     class Meta:
         managed = False
         db_table = 'usermain'
+
+class Tblcomments(models.Model):
+    commentid = models.AutoField(primary_key=True)
+    blogid = models.IntegerField()
+    userid = models.IntegerField(blank=True, null=True)
+    comment = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tblcomments'

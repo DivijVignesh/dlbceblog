@@ -68,7 +68,7 @@ def login_request(request):
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
 				print(f"You are now logged in as {username}.")
-				return render(request=request, template_name="bloghomepage.html", context={})
+				return redirect("/")
 			else:
 				messages.error(request,"Invalid username or password.")
 				print('invalid username or password')

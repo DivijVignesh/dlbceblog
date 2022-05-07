@@ -1,4 +1,5 @@
-
+from django.http import HttpResponse
+from ast import Add
 from django.shortcuts import render, redirect
 import mysql.connector
 from django.contrib import messages
@@ -6,8 +7,8 @@ from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
 
-from blogapp.forms import   BlogUpload
-from blogapp.models import Blogmaster, Usermain
+from blogapp.forms import   AddComment, BlogUpload
+from blogapp.models import Blogmaster, Tblcomments, Usermain
 config = {
     'user': 'djangouser',
     'password': 'password',
@@ -32,24 +33,66 @@ class my_dictionary(dict):
 def blogview(request, username , blogid):
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
-    query=(' select username,firstname, lastname,userid, title ,description,quote,matter,blogid,timeofupload,photo, views from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and blogid="{}"').format(username,blogid)
+    query=(" select username from blogmaster join tblprofile on tblprofile.userid= blogmaster.userid where blogid={}").format(blogid)
     cursor.execute(query)
-    
-    # results = next(cursor.stored_results()).fetchall()
     print(cursor)
-    idd=[]
+    com=[]
     for id in cursor:
-        idd.append(id)
+        com.append(id)
         # print(id)
-    print(idd)
-    query=(' UPDATE blogmaster set views= views+1 where blogid={}').format(blogid)
-    cursor.execute(query)
-    cursor.close()
-    cnx.commit()
-    return render(request,'blogtemplate.html', {
-        'blog': idd
-        }
-    )
+    if(len(com)==0):
+        return redirect('/profile/'+str(username)) #redirect when wrong blog id is entered
+    print(com[0][0])
+    if com[0][0] != username:
+        return HttpResponse("Page not found", content_type='text/plain')
+    if request.method == 'GET':
+        query=(' select username,firstname, lastname,userid, title ,description,quote,matter,blogid,timeofupload,photo, views from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and blogid="{}"').format(username,blogid)
+        cursor.execute(query)
+        form = AddComment()
+        # results = next(cursor.stored_results()).fetchall()
+        print(cursor)
+        idd=[]
+        for id in cursor:
+            idd.append(id)
+            # print(id)
+        print(idd)
+        
+        query=("select TIMESTAMPDIFF(MINUTE, tblcomments.timeofupload,NOW()),tblcomments.commentid,tblprofile.username, comment ,tblprofile.image ,tblprofile.fullname from tblcomments join blogmaster on tblcomments.blogid = blogmaster.blogid join tblprofile on tblcomments.userid = tblprofile.userid where tblcomments.blogid={};").format(blogid)
+        cursor.execute(query)
+        print(cursor)
+        com=[]
+        for id in cursor:
+            com.append(id)
+            # print(id)
+        print(com)
+        query=(' UPDATE blogmaster set views= views+1 where blogid={}').format(blogid)
+        cursor.execute(query)
+        cursor.close()
+        cnx.commit()
+        return render(request,'blogtemplate.html', {
+            'blog': idd,
+            'form':form,
+            'comment':com
+            }
+        )
+    if request.method == 'POST':
+        form = AddComment(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data.get('comment')
+            obj = get_object_or_404(Usermain, username=request.user.username)
+            userid= obj.id
+            query=('insert into tblcomments(blogid, userid,comment) values ({},{},{})').format(blogid,userid,"'"+comment+"'")
+            cursor.execute(query)
+            cursor.close()
+            cnx.commit()
+            return redirect("/"+str(username)+"/"+str(blogid))
+
+        else:   
+            print('Form is not valid')
+            messages.error(request, 'Error Processing Your Request')
+            return redirect("/"+str(username)+"/"+str(blogid))
+
+        
     
 def blogupload(request):
     if request.method == 'GET':
@@ -130,3 +173,4 @@ def blog_delete(request,username,blogid):
         cursor.execute(query)
         cnx.commit()
         return redirect('/profile')
+    return redirect('/profile')

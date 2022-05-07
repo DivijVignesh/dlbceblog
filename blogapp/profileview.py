@@ -48,19 +48,25 @@ def profilehome(request):
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
-    # di={}
-    di=my_dictionary()
-    my_dictionary.add(di,0,"first")
-    my_dictionary.add(di,'sec',"Second") 
-    # print(di['1'])
     idd=[]
     for id in cursor:
         idd.append(id)
         # print(id)
     print(idd)
+    
+    query = ("select title, description,quote,photo,views,TIMESTAMPDIFF(MINUTE,timeofupload,NOW()),username,blogid from blogmaster join tblprofile on blogmaster.userid=tblprofile.userid order by views DESC  limit 4" )
+    cursor.execute(query)
+    # results = next(cursor.stored_results()).fetchall()
+    print(cursor)
+    blog=[]
+    for id in cursor:
+        blog.append(id)
+        # print(id)
+    print(blog)
     cursor.close()
     return render(request,'bloghomepage.html', {
-        'account': idd
+        'account': idd,
+        'blogs':blog
         }
     )
 
