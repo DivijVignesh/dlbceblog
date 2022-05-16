@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.http import HttpResponse
 from ast import Add
 from django.shortcuts import render, redirect
@@ -174,3 +175,19 @@ def blog_delete(request,username,blogid):
         cnx.commit()
         return redirect('/profile')
     return redirect('/profile')
+
+def blogs(request):
+    
+    com=[]
+    context={}
+    
+    cnx = mysql.connector.connect(**config)
+    cursor = cnx.cursor()
+    query=(" select blogid,title,description, matter,quote, timeofupload,photo,views, username,image, fullname from blogmaster join tblprofile on blogmaster.userid= tblprofile.userid ")
+    cursor.execute(query)
+    for id in cursor:
+            com.append(id)
+            # print(id)
+    print(com)
+    context['blogs']= com
+    return render(request,"mainblog.html", context)

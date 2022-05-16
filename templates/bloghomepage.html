@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- <link rel="stylesheet" href="./assets/css/bootstrap.css"> -->
 
-    <link href="./my.css" rel="stylesheet">
+    <!-- <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet"> -->
 
 </head>
 
@@ -48,7 +48,7 @@
                         <a class="nav-link active " aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Student Blogs</a>
+                        <a class="nav-link active" href="/blogs">Student Blogs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
@@ -213,9 +213,9 @@
     <div class="container" style="padding: 1%;">
         <div class="row row justify-content-center">
             <div class="col-md-4 d-flex justify-content-center">
-                <div class="card" style="width: 12rem;">
-                    <img src="{% static '/assets/img/blank-profile-picture-973460_640.png' %}" class="card-img-top"
-                        alt="...">
+                <div class="card" style="width: 250px;height: 400px;">
+                    <img src="/media/{{account.0.4}}" class="img-fluid rounded-circle"
+                        alt="..." style="width: 250px; height: 250px;object-fit: contain; background-color: #3333330b;" >
                     <div class="card-body">
                         <h5 class="card-title">{{account.0.0 }}</h5>
                         <p class="card-text">{{account.0.1 }}<br>{{account.0.2 }}</p>
@@ -225,9 +225,9 @@
                 </div>
             </div>
             <div class="col-md-4 d-flex justify-content-center">
-                <div class="card" style="width: 12rem">
-                    <img src="{% static '/assets/img/blank-profile-picture-973460_640.png' %}" class="card-img-top"
-                        alt="...">
+                <div class="card" style="width: 250px;height: 400px;">
+                    <img src="/media/{{account.1.4}}" class="img-fluid rounded-circle"
+                        alt="..." style="width: 250px; height: 250px;object-fit: contain; background-color: #3333330b;">
                     <div class="card-body">
                         <h5 class="card-title">{{account.1.0 }}</h5>
                         <p class="card-text">{{account.1.1 }}<br> {{account.1.2 }}</p>
@@ -238,7 +238,7 @@
             </div>
             <div class="col-md-4 d-flex justify-content-center">
                 <div class="card" style="width: 12rem;">
-                    <img src="{% static 'assets/img/blank-profile-picture-973460_640.png' %}" class="card-img-top"
+                    <img src="/media/{{ account.2.5}}" class="card-img-top"
                         alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{account.2.0}}</h5>

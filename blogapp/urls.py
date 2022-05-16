@@ -21,4 +21,6 @@ urlpatterns = [
     path('add', blogtemplateview.blogupload , name="blogadd"),
     path('<str:username>/<int:blogid>/edit', blogtemplateview.blog_update , name="blogedit"),
     path('<str:username>/<int:blogid>/delete', blogtemplateview.blog_delete , name="blogedit"),
+    path('blogs', blogtemplateview.blogs , name="blogdisplay"),
+
 ]

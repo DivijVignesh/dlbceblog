@@ -44,7 +44,7 @@ def profilehome(request):
     
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
-    query = ("SELECT fullname, branch,rollno, username from tblprofile where fullname is not null" )
+    query = ("SELECT fullname, branch,rollno, username, image from tblprofile where fullname is not null" )
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     print(cursor)
