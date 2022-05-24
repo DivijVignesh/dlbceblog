@@ -56,9 +56,12 @@
           <li class="nav-item">
             <a class="nav-link active" href="/blogs">Student Blogs</a>
           </li>
+          <!--<li class="nav-item">-->
+          <!--  <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
+          <!--</li>-->
           <li class="nav-item">
-            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
-          </li>
+                        <a class="nav-link active" href="/aboutus">About us</a>
+                    </li>
         </ul>
         <!-- <button class="btn btn-outline-primary" type="submit">Log In</button> -->
                     {% if user.is_authenticated %}
@@ -69,7 +72,7 @@
             <button class="btn btn-outline-primary" type="submit">Log In</button>
 
             {% endif %}
-            
+
 
       </div>
     </div>
@@ -94,7 +97,7 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <!-- <input type="username" id="username" class="form-control form-control-lg" /> -->
-                  {{login_form.username}}  
+                  {{login_form.username}}
                   <label class="form-label" for="form1Example13">User Name</label>
                 </div>
 
@@ -153,7 +156,7 @@
               class="bi bi-facebook"></i></a>
 
           <!-- Twitter -->
-          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
+          <a class="btn btn-social-icon btn-twitter"
             style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
           <!-- Google -->

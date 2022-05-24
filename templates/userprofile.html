@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://kit.fontawesome.com/704ff50790.js" 
+  <script src="https://kit.fontawesome.com/704ff50790.js"
         crossorigin="anonymous">
     </script>
   <!-- Bootstrap CSS -->
@@ -24,7 +24,7 @@
       document.querySelector('.sharebtn')
 
     // Creating a bool variable for changing
-    // the image of share button 
+    // the image of share button
     var bool = 0
 
     // Adding an event listener
@@ -64,14 +64,17 @@
           <li class="nav-item">
             <a class="nav-link active" href="/blogs">Student Blogs</a>
           </li>
+          <!--<li class="nav-item">-->
+          <!--  <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
+          <!--</li>-->
           <li class="nav-item">
-            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
-          </li>
+                        <a class="nav-link active" href="/aboutus">About us</a>
+                    </li>
         </ul>
         {% if user.is_authenticated %}
         <button id="sign_in " class="btn btn-outline-primary"
           onclick="window.location.href = '/auth/logout';">Logout</button>
-
+        <span style="color: #f7f6f6;">|</span>
         <button id="sign_in " class="btn btn-outline-primary" onclick="window.location.href = '/profile/edit/';">Update
           Profile</button>
         {% else %}
@@ -95,7 +98,7 @@
           <div class="card mb-4">
             <div class="card-body text-center">
               <img src="/media/{{ account.profile.7 }}" alt="avatar" class="rounded-circle img-fluid"
-                style="width: 130px; height: 130px;">
+                style="width: 130px; height: 130px; ">
 
               <h5 class="my-3">{{ account.0}}</h5>
               <p class="text-muted mb-1">{{ account.profile.3 }}</p>
@@ -104,7 +107,7 @@
               <div class="d-flex justify-content-center mb-2 ">
                 <!-- <button type="button" class="btn btn-primary">Share Profile</button> -->
                 <a href="#" class="btn btn-primary">Share Profile</a>
-
+                <span style="color: #f7f6f6;">|</span>
 
 
 
@@ -190,7 +193,7 @@
               </div>
             </div>
           </div>
-          <a href="/add" class="btn btn-primary p-1">Add a blog</a>
+          <a href="/add" class="btn btn-primary p-1 ms-1 mb-2">Add a blog</a>
           <script>
             function uploadDate(date) {
               if (date < 60)
@@ -213,12 +216,12 @@
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src="/media/{{i.6}}" class="img-fluid rounded-start" alt="..."
-                    style="width: 230px; height: 230px;">
+                    style="width: 500px; height: 180px;object-fit: cover;">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{{ i.1}}</h5>
-                    <p class="card-text">{{ i.2 | truncatewords:20}}</p>
+                    <p class="card-text text-muted mb-0">{{ i.2 | truncatewords:20}}</p>
                     <script>
                       document.getElementById("{{i.1}}").innerHTML = window.uploadDate("{{i.7}}");
                     </script>
@@ -250,7 +253,7 @@
               class="bi bi-facebook"></i></a>
 
           <!-- Twitter -->
-          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
+          <a class="btn btn-social-icon btn-twitter"
             style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
           <!-- Google -->

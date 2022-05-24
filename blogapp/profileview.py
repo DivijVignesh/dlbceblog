@@ -15,10 +15,10 @@ from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
 config = {
-    'user': 'djangouser',
-    'password': 'password',
-    'host': 'localhost',
-    'database': 'lbceblog'
+    'user': 'divij',
+    'password': 'divijak-47',
+    'host': 'divij.mysql.pythonanywhere-services.com',
+    'database': 'divij$default'
 }
 
 
@@ -39,30 +39,30 @@ def template(request):
     return render(request,'template.html', {
         'account': context
         }
-    ) 
+    )
 def profilehome(request):
-    
+
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
-    query = ("SELECT fullname, branch,rollno, username, image from tblprofile where fullname is not null" )
+    query = ("SELECT fullname, branch,rollno, username, image from tblprofile where priority is not NULL order by priority asc ;" )
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
-    print(cursor)
+    # print(cursor)
     idd=[]
     for id in cursor:
         idd.append(id)
         # print(id)
-    print(idd)
-    
-    query = ("select title, description,quote,photo,views,TIMESTAMPDIFF(MINUTE,timeofupload,NOW()),username,blogid from blogmaster join tblprofile on blogmaster.userid=tblprofile.userid order by views DESC  limit 4" )
+    # print(idd)
+
+    query = ("select title, description,quote,photo,views,TIMESTAMPDIFF(MINUTE,timeofupload,NOW()),username,blogid from blogmaster join tblprofile on blogmaster.userid=tblprofile.userid and isdeleted=0 order by views DESC  limit 4" )
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
-    print(cursor)
+    # print(cursor)
     blog=[]
     for id in cursor:
         blog.append(id)
         # print(id)
-    print(blog)
+    # print(blog)
     cursor.close()
     return render(request,'bloghomepage.html', {
         'account': idd,
@@ -71,10 +71,10 @@ def profilehome(request):
     )
 
 def profileview(request,username):
-    # redirect to user profile view if the request is from owner 
+    # redirect to user profile view if the request is from owner
     if request.user.username== username:
-        return HttpResponseRedirect("/profile/") 
-        
+        return HttpResponseRedirect("/profile/")
+
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
     # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
@@ -82,12 +82,12 @@ def profileview(request,username):
     query = ("SELECT fullname,branch,batch,rollno,classname,email,username,image from tblprofile where username='"+username+"'")
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
-    print(cursor)
+    # print(cursor)
     idd=[]
     di=my_dictionary()
     for id in cursor:
-        my_dictionary.add(di,'profile',id)  
-    query = ('select userid, title ,description,quote,matter ,blogid,photo,TIMESTAMPDIFF(MINUTE, timeofupload,NOW()),views, username from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(username)
+        my_dictionary.add(di,'profile',id)
+    query = ('select userid, title ,description,quote,matter ,blogid,photo,TIMESTAMPDIFF(MINUTE, timeofupload,NOW()),views, username from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}" and isdeleted=0').format(username)
     cursor.execute(query)
     for id in cursor:
         idd.append(id)
@@ -100,7 +100,7 @@ def profileview(request,username):
     )
 
 def userprofileview(request):
-    
+
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
     # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
@@ -108,16 +108,16 @@ def userprofileview(request):
     query = ("SELECT fullname,branch,batch,rollno,classname,email,username,image from tblprofile where username={}").format("'"+request.user.username+"'")
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
-    print(cursor)
+    # print(cursor)
     idd=[]
     di=my_dictionary()
     for id in cursor:
-        my_dictionary.add(di,'profile',id)  
-    query = ('select userid, title ,description,quote,matter ,blogid, photo,TIMESTAMPDIFF(MINUTE, timeofupload,NOW()),views from usermain join blogmaster on usermain.id = blogmaster.userid where username="{}"').format(request.user.username)
+        my_dictionary.add(di,'profile',id)
+    query = ('select userid, title ,description,quote,matter ,blogid, photo,TIMESTAMPDIFF(MINUTE, timeofupload,NOW()),views from usermain join blogmaster on usermain.id = blogmaster.userid and isdeleted=0 where username="{}"').format(request.user.username)
     cursor.execute(query)
     for id in cursor:
         idd.append(id)
-    print(idd)
+    # print(idd)
     my_dictionary.add(di,'blogs',idd)
     cursor.close()
     return render(request,'userprofile.html', {
@@ -129,26 +129,26 @@ def update_view(request):
     # dictionary for initial data with
     # field names as keys
     context={}
-    
-        
- 
+
+
+
     # fetch the object related to passed id
     obj = get_object_or_404(Tblprofile, username = request.user.username)
     # pass the object as instance in form
     form = ProfileEdit(request.POST or None,request.FILES or None, instance = obj)
- 
+
     # save the data from the form and
     # redirect to detail_view
     if form.is_valid():
         form.save()
         print("form is valid")
         return HttpResponseRedirect("/profile/"+request.user.username)
- 
+
     # add form dictionary to context
     context["form"] = form
     context["obj"]=obj
- 
-    return render(request, "profileedit.html", context) 
+
+    return render(request, "profileedit.html", context)
 def profileedit(request):
     if request.method == 'GET':
         form  = ProfileEdit()
@@ -165,20 +165,20 @@ def profileedit(request):
             lastname= form.cleaned_data.get('lastname')
             branch = form.cleaned_data.get('branch')
 
-            print(fullname)
+            # print(fullname)
             cnx = mysql.connector.connect(**config)
             cursor = cnx.cursor()
             query = ("INSERT into usermain(email, firstname,lastname, yearofjoining,phoneno,rollno) values ('{}','{}','{}','{}','{}','{}')").format(email, firstname,lastname, yearofjoining,phoneno,rollno)
             cursor.execute(query)
-            for r in cursor:
-                print(type(r))
-                print(fullname)
+            # for r in cursor:
+                # print(type(r))
+                # print(fullname)
             form.save()
             cnx.commit()
-            
+
             return redirect('login')
-        else:   
+        else:
             print('Form is not valid')
-            messages.error(request, 'Error Processing Your Request')
+            # messages.error(request, 'Error Processing Your Request')
             context = {'form': form}
             return render(request, 'signup.html', context)

@@ -15,10 +15,10 @@ import mysql.connector
 from django.contrib import messages
 
 config = {
-    'user': 'djangouser',
-    'password': 'password',
-    'host': 'localhost',
-    'database': 'lbceblog'
+    'user': 'divij',
+    'password': 'divijak-47',
+    'host': 'divij.mysql.pythonanywhere-services.com',
+    'database': 'divij$default'
 }
 
 
@@ -50,11 +50,11 @@ def signup_request(request):
             for r in cursor:
                 print(type(r))
                 print(firstname)
-            
+
             cnx.commit()
-            
-            return render(request, 'login.html', context={}) 
-        else:   
+
+            return redirect('/auth')
+        else:
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {'form': form}

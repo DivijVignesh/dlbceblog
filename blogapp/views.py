@@ -9,7 +9,12 @@ from . import profileview
 class HomeView(TemplateView):
     template_name= 'bloghomepage.html'
 
-
+def aboutus(request):
+    context={}
+    return render(request,'about.html', {
+        'account': context
+        }
+    )
 
 # class ProfileView(TemplateView):
 #     template_name= 'profile.html'

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6$rrwh*rhz4-5bd@4w1_)v^=mzkg305)@r1(f#+ap0tzhaqwi$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True 
+DEBUG =True
 
-ALLOWED_HOSTS = ['e7ca-49-204-227-83.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['divij.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -133,12 +133,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lbceblog',
-        'USER': 'djangouser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        
+        'NAME': 'divij$default',
+        'USER': 'divij',
+        'PASSWORD': 'divijak-47',
+        'HOST': 'divij.mysql.pythonanywhere-services.com',
+
+
     }
 
 }

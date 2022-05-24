@@ -1,4 +1,4 @@
-from msilib.schema import ListView
+
 from django.http import request
 from django.shortcuts import render , redirect
 from django.views.generic import ListView, TemplateView
@@ -24,7 +24,7 @@ def signup_request(request):
 			# form.save()
 			user = form.cleaned_data.get('firstname')
 			print("User "+user)
-			
+
 			return redirect('login')
 		else:
 			print('Form is not valid')
@@ -55,6 +55,8 @@ def register_request(request):
 	return render(request, 'signup.html', {})
 
 def login_request(request):
+	if request.user.is_authenticated:
+		return redirect("/")
 	if request.method == "POST":
 		# AuthenticationForm=
 		# form = AuthenticationForm(request, data=request.POST)
@@ -81,5 +83,5 @@ def login_request(request):
 
 def logout_request(request):
 	logout(request)
-	messages.info(request, "You have successfully logged out.") 
+	messages.info(request, "You have successfully logged out.")
 	return redirect("login")

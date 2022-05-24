@@ -32,9 +32,12 @@
           <li class="nav-item">
             <a class="nav-link active" href="/blogs">Student Blogs</a>
           </li>
+          <!--<li class="nav-item">-->
+          <!--  <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
+          <!--</li>-->
           <li class="nav-item">
-            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
-          </li>
+                        <a class="nav-link active" href="/aboutus">About us</a>
+                    </li>
         </ul>
         {% if user.is_authenticated %}
         <button id="sign_in " class="btn btn-outline-primary"
@@ -64,7 +67,7 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              
+
               <img src="/media/{{obj.image}}"
                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                 {{ form.image }}
@@ -154,9 +157,9 @@
               </div>
             </div>
           </div>
-          
+
       </form>
-          
+
           <div class="card mb-4">
             <div class="row g-0">
               <div class="col-md-4">
@@ -211,7 +214,7 @@
           </div>
         </div>
       </div>
-      
+
   </section>
 
 
@@ -230,7 +233,7 @@
               class="bi bi-facebook"></i></a>
 
           <!-- Twitter -->
-          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
+          <a class="btn btn-social-icon btn-twitter"
             style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
           <!-- Google -->

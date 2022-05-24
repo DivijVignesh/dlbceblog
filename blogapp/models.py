@@ -19,7 +19,7 @@ class Tblprofile(models.Model):
     class Meta:
         managed = False
         db_table = 'tblprofile'
-       
+
 class Blogmaster(models.Model):
     blogid = models.AutoField(primary_key=True)
     userid = models.ForeignKey('Usermain', models.DO_NOTHING, db_column='userid')
@@ -28,10 +28,11 @@ class Blogmaster(models.Model):
     matter = models.CharField(max_length=10000)
     quote = models.CharField(max_length=100, blank=True, null=True)
     photo = models.ImageField(upload_to='users/')
+    views = models.IntegerField()
     class Meta:
         managed = False
-        db_table = 'blogmaster' 
-        
+        db_table = 'blogmaster'
+
 class Usermain(models.Model):
     email = models.CharField(max_length=45, blank=True, null=True)
     firstname = models.CharField(max_length=45, blank=True, null=True)

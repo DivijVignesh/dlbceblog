@@ -52,12 +52,15 @@
           <li class="nav-item">
             <a class="nav-link active" href="/blogs">Student Blogs</a>
           </li>
+          <!--<li class="nav-item">-->
+          <!--  <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
+          <!--</li>-->
           <li class="nav-item">
-            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
-          </li>
+                        <a class="nav-link active" href="/aboutus">About us</a>
+                    </li>
         </ul>
         {% if user.is_authenticated %}
-        <!-- <button id="sign_in " class="btn btn-outline-primary"  
+        <!-- <button id="sign_in " class="btn btn-outline-primary"
                     onclick="window.location.href = '/auth/logout';">Logout</button> -->
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -104,8 +107,8 @@
       <div class="container ">
 
         <div class="row">
-          
-            
+
+
 
             <div class="col ">
               <div class="card-body  ">
@@ -137,7 +140,7 @@
     <div class="container  col-8">
       <div class="row py-2 ">
         <blockquote class="blockquote" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
-          
+
 
         </blockquote>
         <div class="img py-3">
@@ -154,13 +157,13 @@
         </div>
         <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">Update</button>
   </form>
-         
+
         <div class="col "></div>
       </div>
     </div>
   </div>
   </div>
-  
+
   <div class="col"></div>
   <section class="vh-50" style="background-color: #333333;">
     <div class="container py-5 h-50">
@@ -281,7 +284,7 @@
               class="bi bi-facebook"></i></a>
 
           <!-- Twitter -->
-          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
+          <a class="btn btn-social-icon btn-twitter"
             style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
           <!-- Google -->
@@ -307,7 +310,7 @@
             {% if user.is_authenticated %}
 
             <span class="me-3">Visit Our College website</span>
-            <button type="button" onclick="window.location.href = 'https:www.bullayyacollege.org/'"
+            <button type="button" onclick="window.location.href = 'https://lbce.edu.in/'"
               class="btn btn-outline-light btn-rounded">
               Click Here
             </button>

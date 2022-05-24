@@ -19,12 +19,12 @@
     <!-- header  -->
   <div style="background-color:rgb(44, 11, 119)">
     <div class="container-fluid text-uppercase  ">
-  
+
   <div class="text-center p-3" style="background-color: rgb(44, 11, 119);color: #f7f6f6;">
-    
+
     <h3><img src="https://storage.googleapis.com/ezap-prod/colleges/7591/dr-lankapalli-bullayya-college-visakhapatnam-logo.png" alt="" class="img-fluid rounded-circle me-7" width="100"> Dr.LANKaPALLI BULLAYyA COLLEGE of engineering</h3>
       <cite title="Source Title">computer science and engineering</cite>
-    
+
     <a class="text-white" href="https://mdbootstrap.com/"></a>
   </div>
   </div>
@@ -38,7 +38,7 @@
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">DLBCE</a>
+            <a class="navbar-brand" href="/">DLBCE</a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item ">
@@ -47,12 +47,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/blogs">Our Blogs</a>
                     </li>
+                    <!--<li class="nav-item">-->
+                    <!--    <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
+                    <!--</li>-->
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
+                        <a class="nav-link active" href="/aboutus">About us</a>
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
-                <!-- <button id="sign_in " class="btn btn-outline-primary"  
+                <!-- <button id="sign_in " class="btn btn-outline-primary"
                     onclick="window.location.href = '/auth/logout';">Logout</button> -->
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -88,35 +91,35 @@
                   <a href="{{i.8}}/{{i.0}}">
                     <img src="/media/{{i.6}}" alt="..." class="img-fluid  me-5" style="width: 500px; height: 150px;object-fit: cover; ">
                   </a>
-                                 
+
                   <div class="card-body">
                     <p class="card-text">
                         <blockquote class="blockquote" style="font-family:  Roboto;">
                             <h4> {{ i.1 }}</h4>
-                            
+
                             <a href="/profile/{{i.8}}">
                                 <img src="/media/{{i.9}}" alt="avatar" class="img-fluid rounded-circle me-3" style="object-fit: cover;width:35px;height: 35px;">
                               </a>
                               <h6 class="mb-3">{{i.10}}</h6>
                               <figcaption class="blockquote-footer">
                               <cite title="Source Title">posted on {{i.5}}</cite>
-                              </figcaption> 
+                              </figcaption>
                               {{ i.2 | truncatewords:20}}</p>
                         <hr>
                     <div class="d-flex justify-content-between align-items-center">
-                        
+
                       <div class="btn-group">
                         <div class="small d-flex justify-content-start">
                             <a class="btn btn-primary btn-floating m-1" style="background-color:rgba(239, 16, 16, 0.699); border-style: hidden;" href="#!"
                             role="button"><i class="bi bi-heart-fill"></i></a>
-                            
+
                             <a class="btn btn-primary btn-floating m-1" style="background-color: rgba(19, 19, 232, 0.508);" href="#!"
                             role="button"><i class="bi bi-share-fill"></i></a>
 
-                            
+
                           </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -127,43 +130,43 @@
                   <a href="#!">
                     <img src="background.jpg" alt="..." class="img-fluid  me-5" style="width: 500px; height: 150px;object-fit: cover; ">
                   </a>
-                                 
+
                   <div class="card-body">
                     <p class="card-text">
                         <blockquote class="blockquote" style="font-family:  Roboto;">
                             <h3> THE APOCALYPSE</h3>
-                            
+
                             <a href="#!">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar" class="img-fluid rounded-circle me-3" style="object-fit: cover;width:35px;height: 35px;">
                               </a>
                               <h6 class="mb-3">Sindhu Moulika</h6>
                               <figcaption class="blockquote-footer">
                               <cite title="Source Title">posted on 17 feb,2022</cite>
-                              </figcaption> 
+                              </figcaption>
                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <hr>
                     <div class="d-flex justify-content-between align-items-center">
-                        
+
                       <div class="btn-group">
                         <div class="small d-flex justify-content-start">
                             <a class="btn btn-primary btn-floating m-1" style="background-color:rgba(239, 16, 16, 0.699); border-style: hidden;" href="#!"
                             role="button"><i class="bi bi-heart-fill"></i></a>
-                            
+
                             <a class="btn btn-primary btn-floating m-1" style="background-color: rgba(19, 19, 232, 0.508);" href="#!"
                             role="button"><i class="bi bi-share-fill"></i></a>
 
-                            
+
                           </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
               </div> -->
-              
+
               </div>
             </div>
-          </div>  
+          </div>
       </div>
 
 
@@ -185,7 +188,7 @@
                         role="button"><i class="bi bi-facebook"></i></a>
 
                     <!-- Twitter -->
-                    <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
+                    <a class="btn btn-social-icon btn-twitter"
                         style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
                     <!-- Google -->
