@@ -7,7 +7,9 @@ from django.urls import reverse
 
 
 class Tblprofile(models.Model):
+    id = models.BigAutoField(primary_key=True)
     fullname = models.CharField(max_length=50, db_collation='utf8_general_ci', blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
     branch = models.CharField(max_length=20, blank=True, null=True)
     batch = models.CharField(max_length=20, blank=True, null=True)
     rollno = models.CharField(max_length=20, blank=True, null=True)
@@ -41,7 +43,7 @@ class Usermain(models.Model):
     phoneno = models.CharField(max_length=45, blank=True, null=True)
     rollno = models.CharField(max_length=45, blank=True, null=True)
     username = models.CharField(max_length=45, blank=True, null=True)
-
+    role= models.CharField(max_length=45,blank=True)
     class Meta:
         managed = False
         db_table = 'usermain'

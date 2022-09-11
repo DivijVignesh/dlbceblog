@@ -38,6 +38,9 @@ def signup_request(request):
             rollno =form.cleaned_data.get('rollno')
             lastname= form.cleaned_data.get('lastname')
             username= form.cleaned_data.get('username')
+            branch= form.cleaned_data.get('branch')
+            role= form.cleaned_data.get('role')
+            print(branch)
             password1 = form.cleaned_data.get('password1')
             password2 = form.cleaned_data.get('password2')
             print(firstname)
@@ -46,7 +49,7 @@ def signup_request(request):
             cursor = cnx.cursor()
             # query = ("INSERT into usermain(email, firstname,lastname, yearofjoining,phoneno,rollno,username) values ('{}','{}','{}','{}','{}','{}','{}')").format(email, firstname,lastname, yearofjoining,phoneno,rollno,username)
             # cursor.execute(query)
-            cursor.callproc("insert_user_and_profile",[email,firstname,lastname,yearofjoining,phoneno,rollno,username])
+            cursor.callproc("insert_user_and_profile",[email,firstname,lastname,yearofjoining,phoneno,rollno,username,branch,role])
             for r in cursor:
                 print(type(r))
                 print(firstname)

@@ -56,22 +56,20 @@
           <li class="nav-item">
             <a class="nav-link active" href="/blogs">Student Blogs</a>
           </li>
-          <!--<li class="nav-item">-->
-          <!--  <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
-          <!--</li>-->
           <li class="nav-item">
-                        <a class="nav-link active" href="/aboutus">About us</a>
-                    </li>
+            <a class="nav-link active" href="/aboutus">About us</a>
+        </li>
+                  <li class="nav-item">
+            <a class="nav-link active" href="/events" tabindex="-1" aria-disabled="true">Events</a>
+          </li>
         </ul>
         <!-- <button class="btn btn-outline-primary" type="submit">Log In</button> -->
-                    {% if user.is_authenticated %}
-            <button id="sign_in " onclick="window.location.href = '/auth/logout';">{{user.username}}</button>
 
-            {% else %}
 
             <button class="btn btn-outline-primary" type="submit">Log In</button>
 
-            {% endif %}
+            <span style="color: #f7f6f6;">|</span>
+        <button id="sign_in " class="btn btn-outline-primary" onclick="window.location.href = '/auth/signup/';">SignUp</button>
 
 
       </div>
@@ -81,7 +79,7 @@
     <div class="container py-5 h-100">
 
       <div class="row d-flex align-items-center justify-content-center h-100">
-        <div class="col-md-8 col-lg-7 col-xl-6">
+        <div class="col-md-8 col-lg-7 col-xl-6 d-none d-md-inline">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid"
             alt="Phone image">
         </div>
@@ -114,28 +112,14 @@
                     <input class="form-check-input" type="checkbox" value="" id="checkbox" checked />
                     <label class="form-check-label" for="form1Example3"> Remember me </label>
                   </div>
-                  <a href="#!">Forgot password?</a>
+
                 </div>
 
                 <!-- Submit button -->
                 <!-- <input type="submit" name="submit" value="Sign in" /> -->
                 <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
-                <div class="divider d-flex align-items-center my-4">
-                  <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-                </div>
-                <div class="container d-flex justify-content-center ">
-                  <div class="row">
-                    <div class="col-6">
-                      <a class="btn btn-primary btn-floating m-1" style="background-color: #2c0b69;" href="#!"
-                        role="button"><i class="bi bi-facebook me-2"></i></a>
-                    </div>
-                    <div class="col-6">
-                      <a class="btn btn-primary btn-floating m-1" style="background-color: #8a4040;" href="#!"
-                        role="button"><i class="bi bi-google me-2"></i></a>
-                    </div>
-                  </div>
-                </div>
+
               </form>
             </div>
           </div>
@@ -156,7 +140,7 @@
               class="bi bi-facebook"></i></a>
 
           <!-- Twitter -->
-          <a class="btn btn-social-icon btn-twitter"
+          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
             style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
           <!-- Google -->

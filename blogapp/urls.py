@@ -23,5 +23,6 @@ urlpatterns = [
     path('<str:username>/<int:blogid>/delete', blogtemplateview.blog_delete , name="blogedit"),
     path('blogs', blogtemplateview.blogs , name="blogdisplay"),
     path('aboutus',views.aboutus, name="aboutus"),
+    path('events',views.events, name="events"),
 
 ]

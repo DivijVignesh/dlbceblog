@@ -15,6 +15,11 @@ def aboutus(request):
         'account': context
         }
     )
+def events(request):
+    context={}
+    return render(request,'events.html',{
+        'account':context
+    })
 
 # class ProfileView(TemplateView):
 #     template_name= 'profile.html'

@@ -1,0 +1,313 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="./assets/css/node_modules/bootstrap/dist/css/bootstrap.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <!-- <link rel="stylesheet" href="./assets/css/bootstrap.css"> -->
+
+  <link href="./my.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+  <!-- header  -->
+  <div style="background-color:rgb(44, 11, 119)">
+    <div class="container-fluid text-uppercase  ">
+
+      <div class="text-center p-3" style="background-color: rgb(44, 11, 119);color: #f7f6f6;">
+
+<img src="https://storage.googleapis.com/ezap-prod/colleges/7591/dr-lankapalli-bullayya-college-visakhapatnam-logo.png"
+                        alt="" class="img-fluid rounded-circle me-7" width="100">
+                <h3> Dr.LANKAPALLI BULLAYyA COLLEGE of
+                    engineering</h3>
+                <cite title="Source Title">computer science and engineering</cite>
+
+        <a class="text-white" href="https://mdbootstrap.com/"></a>
+      </div>
+    </div>
+  </div>
+  <!-- end of header  -->
+
+  <!-- navbar -->
+  <nav id="navbar_top" class="shadow-sm pb-3 navbar sticky-top navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">DLBCE</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link active " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/blogs">Our Blogs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/aboutus">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/events" tabindex="-1" aria-disabled="true">Events</a>
+          </li>
+        </ul>
+        {% if user.is_authenticated %}
+        <!-- <button id="sign_in " class="btn btn-outline-primary"
+                    onclick="window.location.href = '/auth/logout';">Logout</button> -->
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">{{ user.username }}
+            <i class="bi bi-person"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+
+          </ul>
+        </div>
+        {% else %}
+
+        <button class="btn btn-outline-primary" onclick="window.location.href = '/auth';">Log In</button>
+
+
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  <!-- ending of navbar -->
+
+  <!-- carousel -->
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+        aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner  text-uppercase text-primary image-fluid">
+      <div class="carousel-item active image-fluid">
+        <img
+          src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          class="d-block w-100 " alt="..." width="100%" height="600" style="object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block ">
+
+
+          <h1 class="display-4 fw-normal">Our latest Upcoming Event</h1>
+          <p class="lead fw-normal">Event details</p>
+          <a class="btn btn-outline-secondary text-white " href="#"
+            style="background:linear-gradient(#e66464, #d3e345);">Coming soon</a>
+
+        </div>
+      </div>
+      <div class="carousel-item   text-uppercase image-fluid">
+        <img
+          src="https://images.pexels.com/photos/976866/pexels-photo-976866.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          class="d-block w-100 " alt="..." width="100%" height="600" style="object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block" style="margin-bottom: 300px;">
+          <h2 class="display-4 fw-normal">Our latest Upcoming Event</h2>
+          <p class="lead fw-normal">Event details</p>
+          <a class="btn btn-outline-secondary text-white " href="#"
+            style="background:linear-gradient(#e66464, #d3e345);">Coming soon</a>
+        </div>
+      </div>
+      <div class="carousel-item  text-uppercase image-fluid">
+        <img src="https://rollbar.com/wp-content/themes/rollbar/assets/img/shapes/quarter-circle-hero-octane.svg"
+          class="d-block w-100 " alt="..." width="100%" height="600" style="object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block" style="margin-bottom: 300px;">
+          <h2 class="display-4 fw-normal">Our latest Upcoming Event</h2>
+          <p class="lead fw-normal">Event details</p>
+          <a class="btn btn-outline-secondary text-white " href="#"
+            style="background:linear-gradient(#e66464, #d3e345);">Coming soon</a>
+        </div>
+      </div>
+      <div class="carousel-item  text-uppercase image-fluid">
+        <img src="https://hdevents.in/wp-content/uploads/2019/07/ce2.jpg" alt="..." width="100%" height="600"
+          style="object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block " style="margin-bottom: 300px;">
+          <h2 class="display-4 fw-normal">Our latest Upcoming Event</h2>
+          <p class="lead fw-normal">Event details</p>
+          <a class="btn btn-outline-secondary text-white " href="#"
+            style="background:linear-gradient(#e66464, #d3e345);">Coming soon</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- carousel end  -->
+
+
+  <!-- start of blogs -->
+  <div class=" Blogs ">
+    <div class="container p-3 ">
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-2 shadow p-2  bg-body rounded  "
+            style="border-radius: 5%; background-color: rgb(254, 254, 254); ">
+              <img
+                src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F292649419%2F280529842488%2F1%2Foriginal.20220527-113228?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C14%2C1200%2C600&s=952b5d8d8ac3cac636a872e00eb5ee96"
+                alt="..." class="img-fluid  " style="width:100%; height: 200px;object-fit: cover; ">
+
+            <div class="card-body">
+              <p class="card-text ">
+              <blockquote class="blockquote flex" style="font-family:  Roboto;">
+                <h4> FinTech Festival India </h4>
+
+              </blockquote>
+              <!-- <a href="#!">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar" class="img-fluid rounded-circle me-3" style="object-fit: cover;width:35px;height: 35px;">
+                              </a> -->
+              <h6 class="mb-3">On</h6>
+              <figcaption class="blockquote-footer">
+                <cite title="Source Title">20-22 July 2022.</cite>
+              </figcaption>
+              <div class="description ">
+                <p>Join us for the FinTech Festival India Mega Event Physical edition scheduled to take in Pragati
+                  Maidan, New Delhi from 20-22 July 2022.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-2 shadow p-2  bg-body rounded  "
+            style="border-radius: 5%; background-color: rgb(254, 254, 254); ">
+              <img
+                src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F192974469%2F124429251107%2F1%2Foriginal.20211129-000629?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C83%2C794%2C397&s=ff7389203b2886b7b5bda7caa1ccc603"
+                alt="..." class="img-fluid  " style="width:100%; height: 200px;object-fit: cover; ">
+
+
+            <div class="card-body">
+              <p class="card-text ">
+              <blockquote class="blockquote flex" style="font-family:  Roboto;">
+                <h4>We The Medicine</h4>
+
+              </blockquote>
+              <!-- <a href="#!">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar" class="img-fluid rounded-circle me-3" style="object-fit: cover;width:35px;height: 35px;">
+                              </a> -->
+              <h6 class="mb-3">On</h6>
+              <figcaption class="blockquote-footer">
+                <cite title="Source Title">Sat, June 11, 2022</cite>
+              </figcaption>
+              <div class="description ">
+                <p> We The Medicine - Healing Our Inner Child 2022. A guided meditation to open the heart</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+      <!-- <div class="row justify-content-center">
+        <div class="col-lg-12 text-center pt-4 p-3">
+          <button type="button" class="btn btn-floating btn-outline-info btn-rounded" data-mdb-ripple-color="dark">
+            <i class="bi bi-arrow-down-circle"></i> View More</button>
+        </div>
+      </div> -->
+  </div>
+
+  </div>
+
+  </div>
+
+  </div>
+
+
+
+
+  <!-- ending of body -->
+
+
+  <!--  footer-->
+  <section class="">
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i
+              class="bi bi-facebook"></i></a>
+
+          <!-- Twitter -->
+          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
+            style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
+
+          <!-- Google -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i
+              class="bi bi-google"></i></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i
+              class="bi bi-instagram"></i></a>
+
+          <!-- Linkedin -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i
+              class="bi bi-linkedin"></i></a>
+          <!-- Github -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i
+              class="bi bi-github"></i></a>
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: CTA -->
+        <section class="">
+          <p class="d-flex justify-content-center align-items-center">
+            <span class="me-3">Register for free</span>
+            <button type="button" class="btn btn-outline-light btn-rounded">
+              Sign up!
+            </button>
+          </p>
+        </section>
+        <!-- Section: CTA -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        DLBCE
+        <a class="text-white" href="https://mdbootstrap.com/"></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </section>
+  <!-- ending of footer -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+  <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -54,7 +54,7 @@ def profilehome(request):
         # print(id)
     # print(idd)
 
-    query = ("select title, description,quote,photo,views,TIMESTAMPDIFF(MINUTE,timeofupload,NOW()),username,blogid from blogmaster join tblprofile on blogmaster.userid=tblprofile.userid and isdeleted=0 order by views DESC  limit 4" )
+    query = ("select title, description,quote,photo,views,TIMESTAMPDIFF(MINUTE,timeofupload,NOW()),username,blogid from blogmaster join tblprofile on blogmaster.userid=tblprofile.userid and isdeleted=0 order by timeofupload DESC  limit 4" )
     cursor.execute(query)
     # results = next(cursor.stored_results()).fetchall()
     # print(cursor)
@@ -100,7 +100,8 @@ def profileview(request,username):
     )
 
 def userprofileview(request):
-
+    if request.user.is_authenticated== False: #redirect to login if this page is accessed without login
+        return redirect('/auth')
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
     # query = ("SELECT fullname, phone,branch,batch,rollno,classname,email,username from tblprofile")
@@ -126,6 +127,8 @@ def userprofileview(request):
     )
 
 def update_view(request):
+    if request.user.is_authenticated== False: #redirect to login if this page is accessed without login
+        return redirect('/auth')
     # dictionary for initial data with
     # field names as keys
     context={}
@@ -134,6 +137,7 @@ def update_view(request):
 
     # fetch the object related to passed id
     obj = get_object_or_404(Tblprofile, username = request.user.username)
+
     # pass the object as instance in form
     form = ProfileEdit(request.POST or None,request.FILES or None, instance = obj)
 
@@ -150,6 +154,8 @@ def update_view(request):
 
     return render(request, "profileedit.html", context)
 def profileedit(request):
+    if request.user.is_authenticated== False: #redirect to login if this page is accessed without login
+        return redirect('/auth')
     if request.method == 'GET':
         form  = ProfileEdit()
         context = {'form': form}

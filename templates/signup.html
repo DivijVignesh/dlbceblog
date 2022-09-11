@@ -75,14 +75,17 @@
           <li class="nav-item">
             <a class="nav-link active" href="/blogs">Student Blogs</a>
           </li>
-          <!--<li class="nav-item">-->
-          <!--  <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>-->
-          <!--</li>-->
           <li class="nav-item">
-                        <a class="nav-link active" href="/aboutus">About us</a>
-                    </li>
+            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Faculty</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/aboutus">About us</a>
+          </li>
+                    <li class="nav-item">
+            <a class="nav-link active" href="/events" tabindex="-1" aria-disabled="true">Events</a>
+          </li>
         </ul>
-        <button class="btn btn-outline-primary" onclick="window.location.href = '/auth';" >Log In</button>
+        <button class="btn btn-outline-primary" onclick="window.location.href = '/auth';">Log In</button>
 
       </div>
     </div>
@@ -105,12 +108,17 @@
 
 
                     {{form.errors}}
+                    <div class="form-outline mb-4">
+
+                      {{form.username}}
+                      <label class="form-label" for="form3Example8">Username</label>
+                    </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                        {{form.username}}
+
                         <!-- <input type="text" id="form3Example1m" class="form-control form-control-lg"
                           placeholder="FirstName" /> -->
-                          {{ form.firstname }}
+                        {{ form.firstname }}
                         <label class="form-label" for="form3Example1m">First name</label>
                       </div>
                     </div>
@@ -118,7 +126,7 @@
                       <div class="form-outline">
                         <!-- <input type="text" id="form3Example1n" class="form-control form-control-lg"
                           placeholder="lastName" /> -->
-                          {{ form.lastname }}
+                        {{ form.lastname }}
                         <label class="form-label" for="form3Example1n">Last name</label>
                       </div>
                     </div>
@@ -130,7 +138,7 @@
                   <div class="form-outline mb-4">
                     <!-- <input type="text" id="form3Example8" class="form-control form-control-lg"
                       placeholder="Enter a valid email address" /> -->
-                      {{ form.email }}
+                    {{ form.email }}
                     <label class="form-label" for="form3Example8">Email</label>
                   </div>
 
@@ -141,35 +149,20 @@
                     {{ form.phoneno }}
                     <label class="form-label" for="form3Example9">Phone Number</label>
                   </div>
-
-                  <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-
-                    <h6 class="mb-0 me-4">Branch: </h6>
-
-                    <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="csegroup"
-                        value="option1" />
-                      <label class="form-check-label" for="csegroup">CSE</label>
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                      <!-- <div class="form-outline mb-4"> -->
+                      {{ form.branch }}
+                      <label class="form-label">Branch</label>
+                      <!-- </div> -->
                     </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                      <!-- <div class="form-outline mb-4"> -->
+                      {{ form.role }}
+                      <label class="form-label">Role</label>
 
-                    <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="ecegroup"
-                        value="option2" />
-                      <label class="form-check-label" for="ecegroup">ECE</label>
+                      <!-- </div> -->
                     </div>
-
-                    <div class="form-check form-check-inline mb-0">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="eeegroup"
-                        value="option3" />
-                      <label class="form-check-label" for="eeegroup">EEE</label>
-                    </div>
-
-                    <div class="form-check form-check-inline mb-0">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="civilgroup"
-                        value="option3" />
-                      <label class="form-check-label" for="civilgroup">CIVIL</label>
-                    </div>
-
                   </div>
 
 
@@ -177,25 +170,30 @@
                   <div class="row">
                     <div class="col-md-6 mb-4 pb-2">
 
-                      <div class="form-outline datepicker">
+                      <div class="form-outline mb-4">
 
                         <!-- <input type="text" class="form-control" name="datepicker" id="datepicker" /> -->
                         {{ form.yearofjoining }}
-                        <label for="exampleDatepicker1" class="form-label">Select a date</label>
+                        <br>
+                        <label for="yearofjoining" class="form-label">Year of Joining</label>
                       </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-outline mb-4">
+                        <!-- <input type="tel" id="phoneNumber" class="form-control form-control-lg" /> -->
+                        {{ form.rollno }}
+                        <label class="form-label" for="phoneNumber">Registration Number</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mb-4 pb-2">
                       <div class="form-outline mb-4">
                         <!-- <input type="password" id="form3Example4cg" class="form-control form-control-lg" /> -->
                         {{ form.password1 }}
                         <label class="form-label" for="form3Example4cg">Password</label>
                       </div>
-                    </div>
-                    <div class="col-md-6 mb-4 pb-2">
 
-                      <div class="form-outline">
-                        <!-- <input type="tel" id="phoneNumber" class="form-control form-control-lg" /> -->
-                        {{ form.rollno }}
-                        <label class="form-label" for="phoneNumber">Registration Number</label>
-                      </div>
                       <div class="form-outline mb-4">
                         <!-- <input type="password" id="form3Example4cg" class="form-control form-control-lg" /> -->
                         {{ form.password2 }}
@@ -203,11 +201,38 @@
                       </div>
 
                     </div>
+                    <script>
+                      window.onload = function () {
+                        var opt = document.getElementById('role').value;
+                        if (opt == "faculty") {
+                          document.getElementById('rollno').readOnly = true;
+
+                          document.getElementById('rollno').value = "none";
+                        }
+                      }
+
+                      console.log(document.getElementById('role').value + "hey")
+                      document.getElementById('role').onchange = function () {
+                        if (this.value == 'faculty') {
+                          console.log(document.getElementById('role').value)
+                          document.getElementById('rollno').readOnly = true;
+                          // document.getElementById('rollno').setAttribute('value','11111111');
+                          document.getElementById('rollno').value = "none";
+                          console.log("Rollno" + document.getElementById('rollno').value)
+                        }
+                        else if (this.value == 'student') {
+                          document.getElementById('rollno').readOnly = false;
+                          document.getElementById('rollno').value = "";
+                        }
+                      }
+
+                    </script>
+                    <div class="d-flex justify-content-end pt-1">
+                      <!-- <button type="button" class="btn btn-light btn-lg">Reset all</button> -->
+                      <button name="submit" class="btn btn-warning btn-lg ms-2" type="submit">Sign Up</button>
+                    </div>
                 </form>
-                <div class="d-flex justify-content-end pt-3">
-                  <!-- <button type="button" class="btn btn-light btn-lg">Reset all</button> -->
-                  <button name="submit" class="btn btn-warning btn-lg ms-2" type="submit">Sign Up</button>
-                </div>
+
               </div>
             </div>
           </div>
@@ -231,7 +256,7 @@
               class="bi bi-facebook"></i></a>
 
           <!-- Twitter -->
-          <a class="btn btn-social-icon btn-twitter"
+          <a href="https://twitter.com/el_alturas" class="btn btn-social-icon btn-twitter"
             style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
 
           <!-- Google -->

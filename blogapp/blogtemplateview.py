@@ -17,7 +17,6 @@ config = {
     'database': 'divij$default'
 }
 
-
 # Create your views here.
 
 
